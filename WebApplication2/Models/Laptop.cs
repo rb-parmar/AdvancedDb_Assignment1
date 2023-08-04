@@ -39,6 +39,8 @@ namespace WebApplication2.Models
         public int BrandId { get; set; }
         
         public Brand Brand { get; set; }
+
+        public HashSet<StoreHasLaptops> LaptopsInStore { get; set; } = new HashSet<StoreHasLaptops>();
     }
 
     public enum LaptopCondition
