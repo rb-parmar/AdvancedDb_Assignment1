@@ -10,5 +10,7 @@ namespace WebApplication2.Database
 
         public DbSet<Brand> brands { get; set; } = null!;
         public DbSet<Laptop> laptops { get; set; } = null!;
+        public DbSet<StoreLocation> locations { get; set; } = null!;
+        public DbSet<StoreHasLaptops> StoreHasLaptops { get; set; } = null!;
     }
 }
