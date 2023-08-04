@@ -4,7 +4,7 @@ namespace WebApplication2.Models
 {
     public class Laptop
     {
-        public Guid Number { get; set; }
+        public Guid ID { get; set; }
 
         private string _model;
         
