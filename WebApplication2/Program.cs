@@ -116,6 +116,48 @@ app.MapGet("/stores/groupedByProvince", (LaptopStoreContext db) =>
     }
 });
 
+app.MapGet("/laptops/search", (LaptopStoreContext db, decimal? amountAbove, decimal? amountBelow, Guid? storeId, string? province, LaptopCondition? condition, Guid? BrandId, string? searchPhrase) =>
+{
+    List<Laptop> laptops = new List<Laptop>();
+
+    if (amountAbove < 0 || amountBelow < 0)
+    {
+        throw new ArgumentException("Price cannot be less than 0");
+    }
+
+    if (amountAbove.HasValue)
+    {
+        laptops = db.laptops.Where(l => l.Price > amountAbove).ToList();
+    }
+
+    if (amountAbove.HasValue)
+    {
+        laptops = db.laptops.Where(l => l.Price < amountBelow).ToList();
+    }
+
+    if (!string.IsNullOrEmpty(province))
+    {
+        laptops = db.laptops.Where(l => l.LaptopsInStore.Any(s => s.Location.Province == province)).ToList();
+    }
+
+    if (condition.HasValue)
+    {
+        laptops = db.laptops.Where(l => l.Condition == condition).ToList();
+    }
+
+    if (BrandId.HasValue)
+    {
+        laptops = db.laptops.Where(l => l.BrandId == BrandId).ToList();
+    }
+
+    if (!string.IsNullOrEmpty(searchPhrase))
+    {
+        laptops = db.laptops.Where(l => l.Model.Contains(searchPhrase)).ToList();
+    }
+
+    return Results.Ok(laptops);
+});
+
 app.Run();
 
 class StoresInProvince
