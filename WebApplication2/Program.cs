@@ -19,12 +19,16 @@ builder.Services.AddDbContext<LaptopStoreContext>(options =>
     options.UseSqlServer(connectionString);
 });
 
-
-
 var app = builder.Build();
 
-// endpoints
+using (IServiceScope scope = app.Services.CreateScope())
+{
+    IServiceProvider serviceProvider = scope.ServiceProvider;
 
+    await SeedData.Initialize(serviceProvider);
+}
+
+// endpoints
 app.MapGet("stores/{storeNumber}/inventory", (LaptopStoreContext db, Guid storeNumber) =>
 {
     try
@@ -42,7 +46,6 @@ app.MapGet("stores/{storeNumber}/inventory", (LaptopStoreContext db, Guid storeN
         return Results.NotFound(ex.Message);
     }
 });
-
 
 app.MapGet("/{storeNumber}/{laptopNumber}/changeQuantity", (LaptopStoreContext db , Guid storeNumber, Guid laptopNumber, int quantity) =>
 {

@@ -27,7 +27,7 @@
         public HashSet<StoreHasLaptops> StoreHasLaptops { get; set; } = new HashSet<StoreHasLaptops>();
 
         public StoreLocation() { }
-        public StoreLocation(string streetName, int streetNumber, string province, int laptopQuantity)
+        public StoreLocation(string streetName, int streetNumber, string province)
         {
             StreetName = streetName;
             StreetNumber = streetNumber;
