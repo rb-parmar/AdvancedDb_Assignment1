@@ -10,14 +10,21 @@
         public Guid LaptopId { get; set; }
         public Laptop Laptop { get; set; }
 
+        public int LaptopQuantity { get; set; }
+
         public StoreHasLaptops() { }
-        public StoreHasLaptops(StoreLocation storeLocation, Laptop laptop)
+        public StoreHasLaptops(StoreLocation storeLocation, Laptop laptop, int quantity)
         {
             StoreId = storeLocation.Id;
             Location = storeLocation;
 
             LaptopId = laptop.ID; 
             Laptop = laptop;  
+
+            LaptopQuantity = quantity;
+
+            storeLocation.StoreHasLaptops.Add(this);
+            laptop.LaptopsInStore.Add(this);
         }
     }
 

@@ -36,11 +36,22 @@ namespace WebApplication2.Models
         
         public LaptopCondition Condition { get; set; }
         
-        public int BrandId { get; set; }
+        public Guid BrandId { get; set; }
         
         public Brand Brand { get; set; }
 
         public HashSet<StoreHasLaptops> LaptopsInStore { get; set; } = new HashSet<StoreHasLaptops>();
+        public Laptop() { }
+        public Laptop(string model, decimal price, Brand brand, LaptopCondition laptopCondition) 
+        {
+            Model = model;
+            Price = price;
+            Brand = brand;
+            BrandId = brand.Id;
+            Condition = laptopCondition;
+
+            brand.Laptops.Add(this);
+        }
     }
 
     public enum LaptopCondition
@@ -49,4 +60,5 @@ namespace WebApplication2.Models
         Refurbished,
         Rental
     }
+
 }

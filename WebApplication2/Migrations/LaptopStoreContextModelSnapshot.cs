@@ -24,11 +24,9 @@ namespace WebApplication2.Migrations
 
             modelBuilder.Entity("WebApplication2.Models.Brand", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -45,8 +43,8 @@ namespace WebApplication2.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("BrandId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Condition")
                         .HasColumnType("int");
@@ -74,6 +72,9 @@ namespace WebApplication2.Migrations
                     b.Property<Guid>("LaptopId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("LaptopQuantity")
+                        .HasColumnType("int");
+
                     b.Property<Guid>("LocationId")
                         .HasColumnType("uniqueidentifier");
 
@@ -94,9 +95,6 @@ namespace WebApplication2.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("LaptopQuantity")
-                        .HasColumnType("int");
 
                     b.Property<string>("Province")
                         .IsRequired()

@@ -2,7 +2,7 @@
 {
     public class Brand
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         
         public string _name;
         
@@ -17,5 +17,12 @@
         }
 
         public HashSet<Laptop> Laptops = new HashSet<Laptop>();
+
+        public Brand() { }
+        public Brand(string name)
+        {
+            _name = name;
+        }
+
     }
 }

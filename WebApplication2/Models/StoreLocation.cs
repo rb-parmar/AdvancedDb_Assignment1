@@ -23,17 +23,15 @@
                 }
             }
         }
-        public int LaptopQuantity { get; set; }
 
         public HashSet<StoreHasLaptops> StoreHasLaptops { get; set; } = new HashSet<StoreHasLaptops>();
 
+        public StoreLocation() { }
         public StoreLocation(string streetName, int streetNumber, string province, int laptopQuantity)
         {
             StreetName = streetName;
             StreetNumber = streetNumber;
             Province = province;
-            Province = province;
-            LaptopQuantity = laptopQuantity;
         }
     }
 }
