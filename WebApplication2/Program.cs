@@ -128,9 +128,7 @@ app.MapGet("/laptops/search", (LaptopStoreContext db, decimal? amountAbove, deci
     if (amountAbove.HasValue)
     {
         laptops = db.laptops.Where(l => l.Price > amountAbove).ToList();
-    }
-
-    if (amountAbove.HasValue)
+    } else if (amountAbove.HasValue)
     {
         laptops = db.laptops.Where(l => l.Price < amountBelow).ToList();
     }
