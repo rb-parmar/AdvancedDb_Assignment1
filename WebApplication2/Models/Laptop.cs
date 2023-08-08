@@ -16,6 +16,9 @@ namespace WebApplication2.Models
                 if (string.IsNullOrEmpty(value) || value.Length < 3)
                 {
                     throw new ArgumentOutOfRangeException(nameof(value), "Laptop model name must be at least three characters in length.");
+                } else
+                {
+                    _model = value;
                 }
             }
         }
